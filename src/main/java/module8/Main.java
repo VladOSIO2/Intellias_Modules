@@ -1,6 +1,11 @@
 package module8;
 
-import module8.shape.*;
+import module8.shape.Circle;
+import module8.shape.Ellipse;
+import module8.shape.Square;
+import module8.shape.Trapezoid;
+import module8.shape.Triangle;
+import module8.shape.Shape;
 import module8.shape.printer.ConsoleShapePrinter;
 import module8.shape.printer.ShapePrinter;
 
