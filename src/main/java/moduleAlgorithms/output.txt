@@ -1,0 +1,11 @@
+Array generating: 166ms
+
+TimSort (Arrays.sort()) sorting by age: 939ms
+TimSort (Arrays.sort()) sorting by age (for an already sorted array): 97ms
+TimSort (Arrays.sort()) sorting by height: 661ms
+TimSort (Arrays.sort()) sorting by weight: 839ms
+TimSort (Arrays.sort()) sorting by weight and then height: 1163ms
+
+People with same weight and different name count: 4400
+
+Process finished with exit code 0
