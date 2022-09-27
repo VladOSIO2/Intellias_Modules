@@ -13,7 +13,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Intellias_Modules" options="--add-exports java.base/jdk.internal.util=ALL-UNNAMED" />
+      <module name="Intellias_Modules" options="" />
     </option>
   </component>
 </project>
