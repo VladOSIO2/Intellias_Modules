@@ -13,6 +13,7 @@ the phone number regex then the line will be printed
 
 Reads users from the file. Each user has String name and int age parameter.
 Prints the list of read users as a formatted JSON string
+to a file `user.json` in resources/module10/task2
 Uses Google Gson library's Gson class to create JSON strings from Java objects
 
 **Task3**

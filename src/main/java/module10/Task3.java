@@ -1,28 +1,27 @@
 package module10;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Task3 {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         String path = "./src/main/resources/module10/task3/words.txt";
-        Map<String, Integer> wordCount = countWordsFromFile(new File(path));
+        Map<String, Integer> wordCount = countWordsFromFile(path);
         Map<String, Integer> wordCountSorted = sortMapByValues(wordCount, Comparator.reverseOrder());
         printMapEntries(wordCountSorted);
     }
 
-    private static Map<String, Integer> countWordsFromFile(File file) throws FileNotFoundException {
+    private static Map<String, Integer> countWordsFromFile(String path) throws IOException {
         Map<String, Integer> wordsCount = new HashMap<>();
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNext()) {
-                String[] words = scanner.nextLine().split("\\s+");
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while (reader.ready()) {
+                String[] words = reader.readLine().split("\\s+");
                 for(String word : words) {
                     wordsCount.merge(word, 1, Integer::sum);
                 }

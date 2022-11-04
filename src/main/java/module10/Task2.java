@@ -2,31 +2,33 @@ package module10;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Task2 {
-    public static void main(String[] args) throws FileNotFoundException {
-        String path = "./src/main/resources/module10/task2/file.txt";
-        File file = new File(path);
-        List<User> users = getUsersFromFile(file);
+    public static void main(String[] args) throws IOException {
+        String inputPath = "./src/main/resources/module10/task2/file.txt";
+        List<User> users = getUsersFromFile(inputPath);
 
+        String outputPath = "./src/main/resources/module10/task2/user.json";
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        System.out.println(gson.toJson(users));
+        try (FileWriter writer = new FileWriter(outputPath)) {
+            gson.toJson(users, writer);
+        }
     }
 
-    private static List<User> getUsersFromFile(File file) throws FileNotFoundException {
+    private static List<User> getUsersFromFile(String path) throws IOException {
         List<User> users = new ArrayList<>();
-        try (Scanner scanner = new Scanner(file)) {
-            scanner.nextLine(); //skipping the first line
-            while (scanner.hasNext()) {
-                String[] properties = scanner.nextLine().split("\\s+");
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            reader.readLine(); //skipping the first line
+            while (reader.ready()) {
+                String[] properties = reader.readLine().split("\\s+");
                 users.add(new User(properties[0], Integer.parseInt(properties[1])));
             }
         }

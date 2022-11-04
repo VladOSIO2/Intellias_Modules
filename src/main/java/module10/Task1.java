@@ -1,8 +1,8 @@
 package module10;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class Task1 {
@@ -13,15 +13,15 @@ public class Task1 {
     private static final Pattern PHONE_NUMBER_PATTERN
             = Pattern.compile(PHONE_NUMBER_REGEX);
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         String path = "./src/main/resources/module10/task1/file.txt";
-        printPhoneNumbersFrom(new File(path));
+        printPhoneNumbersFrom(path);
     }
 
-    private static void printPhoneNumbersFrom(File file) throws FileNotFoundException {
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNext()) {
-                String line = scanner.nextLine();
+    private static void printPhoneNumbersFrom(String path) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while (reader.ready()) {
+                String line = reader.readLine();
                 if (isPhoneNumber(line)) {
                     System.out.println(line);
                 }
