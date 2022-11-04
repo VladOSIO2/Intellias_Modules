@@ -1,7 +1,5 @@
 package module11;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -26,14 +24,9 @@ public class Task5 {
 
         int minLength = Math.min(firstObjects.length, secondObjects.length);
 
-        //giving an arraylist capacity, so it won't spend time on resizing
-        List<T> list = new ArrayList<>(minLength * 2);
-
-        for (int i = 0; i < minLength; i++) {
-            list.add(firstObjects[i]);
-            list.add(secondObjects[i]);
-        }
-        return list.stream();
+        return IntStream.range(0, minLength)
+            .boxed()
+            .flatMap(i -> Stream.of(firstObjects[i], secondObjects[i]));
     }
 
 
